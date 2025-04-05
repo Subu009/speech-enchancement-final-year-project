@@ -1,7 +1,7 @@
 from args import parser
 import os
-from prepare_data import create_data
-from train_model import training
+from preparedate import create_data
+from train import training
 from prediction_denoise import prediction
 
 if __name__ == '__main__':
