@@ -1,3 +1,4 @@
+#this is a single python code with all the functions for denoising using dnn for major project
 import numpy as np
 import librosa
 import soundfile as sf
@@ -15,8 +16,8 @@ BATCH_SIZE = 32
 TEST_SIZE = 0.2
 RANDOM_STATE = 42
 
-
-def extract_features(audio_path):
+#please give path
+def extract_features(audio_path): 
     try:
         y, sr = librosa.load(audio_path, sr=SAMPLE_RATE)
         if len(y) == 0:
@@ -74,7 +75,6 @@ def create_dnn_model(input_shape):
     return model
 
 def train_model(model, X_train, y_train, X_val, y_val, epochs, batch_size):
-    """Trains the DNN model."""
     history = model.fit(X_train, y_train,
                         epochs=epochs,
                         batch_size=batch_size,
@@ -83,7 +83,6 @@ def train_model(model, X_train, y_train, X_val, y_val, epochs, batch_size):
     return model, history
 
 def denoise_audio(audio_path, model, scaler_X, scaler_y):
-    """Denoises an input audio file using the trained model."""
     features = extract_features(audio_path)
     if features is None:
         print("Could not extract features from the input audio.")
